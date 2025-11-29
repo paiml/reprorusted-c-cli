@@ -1,0 +1,47 @@
+name: cut
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P2
+loc: 400
+
+functions:
+  - name: cut_fields
+    lines: 100-250
+    signature: "void cut_fields(FILE *stream)"
+    complexity:
+      cyclomatic: 12
+      cognitive: 18
+    expected_errors:
+      - code: E0382
+        count: 1
+        pattern: "use after move of field buffer"
+      - code: E0597
+        count: 1
+        pattern: "field reference does not live long enough"
+
+  - name: cut_bytes
+    lines: 252-320
+    signature: "void cut_bytes(FILE *stream)"
+    complexity:
+      cyclomatic: 8
+      cognitive: 12
+
+  - name: set_fields
+    lines: 322-380
+    signature: "void set_fields(const char *fieldstr)"
+    complexity:
+      cyclomatic: 10
+      cognitive: 14
+
+  - name: cut_stream
+    lines: 382-400
+    signature: "void cut_stream(FILE *stream)"
+    complexity:
+      cyclomatic: 4
+      cognitive: 6
+
+annotations:
+  - citation: "[7] Mechtaev et al. 2016"
+    relevance: "Field parsing with lifetime constraints"

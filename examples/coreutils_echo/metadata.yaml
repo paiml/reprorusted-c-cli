@@ -1,0 +1,23 @@
+name: echo
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P0
+loc: 80
+
+functions:
+  - name: main
+    lines: 1-80
+    signature: "int main(int argc, char **argv)"
+    complexity:
+      cyclomatic: 6
+      cognitive: 8
+    expected_errors:
+      - code: E0308
+        count: 2
+        pattern: "type mismatch in string handling and argc/argv"
+
+annotations:
+  - citation: "[1] Emre et al. 2021"
+    relevance: "String handling with argc/argv pattern"

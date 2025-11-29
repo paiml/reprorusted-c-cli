@@ -1,0 +1,30 @@
+name: mkdir
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P1
+loc: 200
+
+functions:
+  - name: make_dir_parents
+    lines: 50-150
+    signature: "bool make_dir_parents(const char *dir, mode_t mode, mode_t umask_value)"
+    complexity:
+      cyclomatic: 8
+      cognitive: 12
+    expected_errors:
+      - code: E0308
+        count: 2
+        pattern: "type mismatch in mode_t conversions"
+
+  - name: process_dir
+    lines: 152-200
+    signature: "int process_dir(char *dir, struct savewd *wd, void *options)"
+    complexity:
+      cyclomatic: 6
+      cognitive: 8
+
+annotations:
+  - citation: "[6] Long & Rinard 2016"
+    relevance: "Mode parsing with syscall interactions"

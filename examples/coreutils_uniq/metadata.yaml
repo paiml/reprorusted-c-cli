@@ -1,0 +1,37 @@
+name: uniq
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P2
+loc: 250
+
+functions:
+  - name: check_file
+    lines: 50-180
+    signature: "void check_file(const char *infile, const char *outfile)"
+    complexity:
+      cyclomatic: 12
+      cognitive: 18
+    expected_errors:
+      - code: E0382
+        count: 2
+        pattern: "use after move during line deduplication"
+
+  - name: writeline
+    lines: 182-220
+    signature: "void writeline(const struct linebuffer *line, FILE *outfile, const char *delimiter)"
+    complexity:
+      cyclomatic: 4
+      cognitive: 6
+
+  - name: different
+    lines: 222-250
+    signature: "bool different(const struct linebuffer *a, const struct linebuffer *b)"
+    complexity:
+      cyclomatic: 6
+      cognitive: 8
+
+annotations:
+  - citation: "[7] Mechtaev et al. 2016"
+    relevance: "Streaming deduplication pattern"

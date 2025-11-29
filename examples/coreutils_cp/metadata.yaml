@@ -1,0 +1,40 @@
+name: cp
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P1
+loc: 800
+
+functions:
+  - name: copy_file
+    lines: 100-400
+    signature: "bool copy_file(const char *src, const char *dst, const struct cp_options *options)"
+    complexity:
+      cyclomatic: 15
+      cognitive: 22
+    expected_errors:
+      - code: E0499
+        count: 3
+        pattern: "multiple mutable borrows during deep copy"
+      - code: E0133
+        count: 2
+        pattern: "unsafe required for permission bit manipulation"
+
+  - name: copy_reg
+    lines: 402-600
+    signature: "bool copy_reg(const char *src_name, const char *dst_name, const struct cp_options *x)"
+    complexity:
+      cyclomatic: 12
+      cognitive: 18
+
+  - name: copy_internal
+    lines: 602-800
+    signature: "bool copy_internal(const char *src_name, const char *dst_name, struct cp_options *x)"
+    complexity:
+      cyclomatic: 10
+      cognitive: 15
+
+annotations:
+  - citation: "[6] Long & Rinard 2016"
+    relevance: "File system utilities provide optimal training signal"

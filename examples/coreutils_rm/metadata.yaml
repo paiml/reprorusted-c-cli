@@ -1,0 +1,40 @@
+name: rm
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P1
+loc: 400
+
+functions:
+  - name: rm
+    lines: 50-200
+    signature: "enum RM_status rm(size_t n_files, char *const *file, const struct rm_options *x)"
+    complexity:
+      cyclomatic: 10
+      cognitive: 14
+    expected_errors:
+      - code: E0133
+        count: 2
+        pattern: "unsafe required for recursive directory traversal"
+      - code: E0382
+        count: 1
+        pattern: "use after move of file handle"
+
+  - name: rm_fts
+    lines: 202-350
+    signature: "enum RM_status rm_fts(FTS *fts, FTSENT *ent, const struct rm_options *x)"
+    complexity:
+      cyclomatic: 12
+      cognitive: 16
+
+  - name: prompt
+    lines: 352-400
+    signature: "bool prompt(const char *filename, const struct rm_options *x)"
+    complexity:
+      cyclomatic: 5
+      cognitive: 7
+
+annotations:
+  - citation: "[6] Long & Rinard 2016"
+    relevance: "Recursive delete with unsafe operations"

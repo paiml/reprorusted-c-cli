@@ -1,0 +1,33 @@
+name: head
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P0
+loc: 180
+
+functions:
+  - name: head_file
+    lines: 40-120
+    signature: "int head_file(const char *filename, uintmax_t n_lines)"
+    complexity:
+      cyclomatic: 7
+      cognitive: 10
+    expected_errors:
+      - code: E0597
+        count: 1
+        pattern: "line buffer does not live long enough"
+      - code: E0515
+        count: 1
+        pattern: "cannot return reference to local buffer"
+
+  - name: head_lines
+    lines: 122-180
+    signature: "int head_lines(FILE *fp, uintmax_t n_lines)"
+    complexity:
+      cyclomatic: 5
+      cognitive: 7
+
+annotations:
+  - citation: "[1] Emre et al. 2021"
+    relevance: "Line buffering with early exit pattern"

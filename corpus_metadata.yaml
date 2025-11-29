@@ -1,0 +1,67 @@
+version: "1.0.0"
+created: "2025-11-29"
+source: "GNU coreutils 9.4"
+source_url: "https://ftp.gnu.org/gnu/coreutils/coreutils-9.4.tar.xz"
+source_sha256: "ea613a4cf44612326e917201bbbcdfbd301de21f3d3e15297f055b2c3f296c78"
+
+statistics:
+  total_examples: 19
+  total_functions: 47
+  total_loc: 6180
+
+error_distribution:
+  E0506: 412   # 31% - Cannot assign to borrowed
+  E0499: 278   # 21% - Multiple mutable borrows
+  E0382: 213   # 16% - Use after move
+  E0308: 133   # 10% - Type mismatch
+  E0133: 93    #  7% - Unsafe required
+  E0597: 80    #  6% - Does not live long enough
+  E0515: 66    #  5% - Cannot return reference
+  other: 53    #  4%
+
+tier_breakdown:
+  P0:
+    examples: 8
+    functions: 18
+    loc: 1030
+    utilities:
+      - yes
+      - "true"
+      - "false"
+      - echo
+      - cat
+      - wc
+      - head
+      - tail
+  P1:
+    examples: 6
+    functions: 17
+    loc: 3500
+    utilities:
+      - cp
+      - mv
+      - rm
+      - ls
+      - mkdir
+      - ln
+  P2:
+    examples: 5
+    functions: 12
+    loc: 1650
+    utilities:
+      - sort
+      - uniq
+      - chmod
+      - chown
+      - cut
+
+cross_project_transfer:
+  depyler_compatible:
+    - E0382  # Use after move
+    - E0499  # Multiple mutable borrows
+    - E0506  # Cannot assign to borrowed
+    - E0597  # Does not live long enough
+    - E0515  # Cannot return reference
+  c_specific:
+    - E0133  # Unsafe required (raw pointers)
+    - E0308  # Type mismatch (C type system differs)

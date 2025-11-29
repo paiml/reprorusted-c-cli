@@ -1,0 +1,19 @@
+name: true
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P0
+loc: 10
+
+functions:
+  - name: main
+    lines: 1-10
+    signature: "int main(void)"
+    complexity:
+      cyclomatic: 1
+      cognitive: 1
+
+annotations:
+  - citation: "[1] Emre et al. 2021"
+    relevance: "Baseline: should compile clean with no ownership errors"

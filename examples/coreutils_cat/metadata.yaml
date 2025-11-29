@@ -1,0 +1,39 @@
+name: cat
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P0
+loc: 150
+
+functions:
+  - name: cat_file
+    lines: 42-89
+    signature: "int cat_file(const char *filename)"
+    complexity:
+      cyclomatic: 8
+      cognitive: 12
+    expected_errors:
+      - code: E0506
+        count: 2
+        pattern: "buffer mutation while borrowed"
+      - code: E0382
+        count: 1
+        pattern: "file handle reuse after close"
+
+  - name: copy_buffer
+    lines: 91-120
+    signature: "ssize_t copy_buffer(int fd_in, int fd_out, char *buf, size_t size)"
+    complexity:
+      cyclomatic: 4
+      cognitive: 6
+    expected_errors:
+      - code: E0499
+        count: 1
+        pattern: "simultaneous read/write buffer access"
+
+annotations:
+  - citation: "[1] Emre et al. 2021"
+    relevance: "File I/O with buffer management is canonical ownership challenge"
+  - citation: "[4] Astrauskas et al. 2019"
+    relevance: "cat demonstrates typical read-process-write pattern"

@@ -1,0 +1,47 @@
+name: ls
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P1
+loc: 1200
+
+functions:
+  - name: print_dir
+    lines: 200-500
+    signature: "void print_dir(const char *name, const char *realname, bool command_line)"
+    complexity:
+      cyclomatic: 15
+      cognitive: 22
+    expected_errors:
+      - code: E0499
+        count: 2
+        pattern: "multiple mutable borrows during directory traversal"
+      - code: E0597
+        count: 1
+        pattern: "directory entry does not live long enough"
+
+  - name: gobble_file
+    lines: 502-800
+    signature: "uintmax_t gobble_file(const char *name, enum file_type type, ino_t inode)"
+    complexity:
+      cyclomatic: 18
+      cognitive: 25
+
+  - name: print_long_format
+    lines: 802-1000
+    signature: "void print_long_format(const struct fileinfo *f)"
+    complexity:
+      cyclomatic: 12
+      cognitive: 16
+
+  - name: sort_files
+    lines: 1002-1200
+    signature: "void sort_files(void)"
+    complexity:
+      cyclomatic: 8
+      cognitive: 12
+
+annotations:
+  - citation: "[7] Mechtaev et al. 2016"
+    relevance: "Directory traversal with sorting produces complex patterns"

@@ -1,0 +1,40 @@
+name: ln
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P1
+loc: 300
+
+functions:
+  - name: do_link
+    lines: 50-200
+    signature: "bool do_link(const char *source, const char *dest)"
+    complexity:
+      cyclomatic: 10
+      cognitive: 14
+    expected_errors:
+      - code: E0308
+        count: 1
+        pattern: "type mismatch in path handling"
+      - code: E0133
+        count: 1
+        pattern: "unsafe required for symlink syscalls"
+
+  - name: make_link
+    lines: 202-280
+    signature: "int make_link(const char *source, const char *dest, bool symbolic)"
+    complexity:
+      cyclomatic: 7
+      cognitive: 10
+
+  - name: backup_file
+    lines: 282-300
+    signature: "char *backup_file(const char *file)"
+    complexity:
+      cyclomatic: 4
+      cognitive: 6
+
+annotations:
+  - citation: "[6] Long & Rinard 2016"
+    relevance: "Symlink handling with path manipulation"

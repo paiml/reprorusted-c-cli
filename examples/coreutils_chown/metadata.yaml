@@ -1,0 +1,37 @@
+name: chown
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P2
+loc: 250
+
+functions:
+  - name: change_file_owner
+    lines: 50-150
+    signature: "bool change_file_owner(const char *file, uid_t uid, gid_t gid)"
+    complexity:
+      cyclomatic: 10
+      cognitive: 14
+    expected_errors:
+      - code: E0133
+        count: 2
+        pattern: "unsafe required for chown/lchown syscalls"
+
+  - name: parse_user_spec
+    lines: 152-200
+    signature: "bool parse_user_spec(const char *spec, uid_t *uid, gid_t *gid)"
+    complexity:
+      cyclomatic: 8
+      cognitive: 12
+
+  - name: chown_files
+    lines: 202-250
+    signature: "bool chown_files(char **files, size_t n_files, const struct chown_options *opt)"
+    complexity:
+      cyclomatic: 6
+      cognitive: 8
+
+annotations:
+  - citation: "[6] Long & Rinard 2016"
+    relevance: "Privilege escalation patterns with unsafe syscalls"

@@ -1,0 +1,40 @@
+name: tail
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P0
+loc: 350
+
+functions:
+  - name: tail_file
+    lines: 50-200
+    signature: "int tail_file(const char *filename, uintmax_t n_lines)"
+    complexity:
+      cyclomatic: 12
+      cognitive: 18
+    expected_errors:
+      - code: E0499
+        count: 2
+        pattern: "multiple mutable borrows of ring buffer"
+      - code: E0506
+        count: 1
+        pattern: "cannot assign to ring buffer while borrowed"
+
+  - name: tail_lines
+    lines: 202-300
+    signature: "int tail_lines(FILE *fp, uintmax_t n_lines)"
+    complexity:
+      cyclomatic: 8
+      cognitive: 12
+
+  - name: pipe_lines
+    lines: 302-350
+    signature: "void pipe_lines(FILE *fp, uintmax_t n_lines)"
+    complexity:
+      cyclomatic: 6
+      cognitive: 8
+
+annotations:
+  - citation: "[1] Emre et al. 2021"
+    relevance: "Ring buffer with complex state management"

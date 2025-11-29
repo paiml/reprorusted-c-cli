@@ -1,0 +1,47 @@
+name: sort
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P2
+loc: 1500
+
+functions:
+  - name: sort_buffer_lines
+    lines: 200-600
+    signature: "size_t sort_buffer_lines(struct buffer *buf, struct keyfield const *key)"
+    complexity:
+      cyclomatic: 20
+      cognitive: 30
+    expected_errors:
+      - code: E0499
+        count: 3
+        pattern: "multiple mutable borrows during in-place sort"
+      - code: E0506
+        count: 2
+        pattern: "cannot assign to buffer while comparison in progress"
+
+  - name: compare_lines
+    lines: 602-800
+    signature: "int compare_lines(const struct line *a, const struct line *b, struct keyfield const *key)"
+    complexity:
+      cyclomatic: 15
+      cognitive: 22
+
+  - name: mergefps
+    lines: 802-1100
+    signature: "void mergefps(struct sortfile *files, size_t nfiles, FILE *ofp)"
+    complexity:
+      cyclomatic: 18
+      cognitive: 26
+
+  - name: xfclose
+    lines: 1102-1500
+    signature: "void xfclose(FILE *fp, const char *filename)"
+    complexity:
+      cyclomatic: 12
+      cognitive: 16
+
+annotations:
+  - citation: "[7] Mechtaev et al. 2016"
+    relevance: "Algorithmic code produces qualitatively different error patterns"

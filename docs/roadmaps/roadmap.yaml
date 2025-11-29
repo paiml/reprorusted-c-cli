@@ -1,0 +1,158 @@
+roadmap_version: '1.0'
+github_enabled: true
+github_repo: paiml/reprorusted-c-cli
+roadmap:
+- id: CORPUS-001
+  github_issue: null
+  item_type: task
+  title: Implement corpus validation tests (TDD)
+  status: completed
+  priority: high
+  assigned_to: null
+  created: 1970-01-01T00:00:00Z
+  updated: 2025-11-29T11:25:41.153471007+00:00
+  spec: null
+  acceptance_criteria:
+  - Validation script exists at scripts/validate_corpus.sh
+  - Validates all 19 example directories exist
+  - Validates metadata.yaml schema compliance
+  - Validates error distribution matches corpus_metadata.yaml
+  - All tests fail initially (red phase of TDD)
+  phases: []
+  subtasks: []
+  estimated_effort: null
+  labels: []
+  notes: null
+- id: CORPUS-002
+  github_issue: null
+  item_type: task
+  title: Create P0 tier example metadata files
+  status: completed
+  priority: high
+  assigned_to: null
+  created: 1970-01-01T00:00:00Z
+  updated: 2025-11-29T11:26:39.176096078+00:00
+  spec: null
+  acceptance_criteria:
+  - 8 metadata.yaml files created
+  - Schema matches spec section 3.1
+  - Expected error codes documented per spec section 2.1
+  phases: []
+  subtasks: []
+  estimated_effort: null
+  labels: []
+  notes: null
+- id: CORPUS-003
+  github_issue: null
+  item_type: task
+  title: Create P1 tier example metadata files
+  status: completed
+  priority: medium
+  assigned_to: null
+  created: 1970-01-01T00:00:00Z
+  updated: 2025-11-29T11:27:21.446112564+00:00
+  spec: null
+  acceptance_criteria:
+  - 6 metadata.yaml files created
+  - Schema matches spec section 3.1
+  - Expected error codes documented per spec section 2.1
+  phases: []
+  subtasks: []
+  estimated_effort: null
+  labels: []
+  notes: null
+- id: CORPUS-004
+  github_issue: null
+  item_type: task
+  title: Create P2 tier example metadata files
+  status: completed
+  priority: medium
+  assigned_to: null
+  created: 1970-01-01T00:00:00Z
+  updated: 2025-11-29T11:28:03.066851618+00:00
+  spec: null
+  acceptance_criteria:
+  - 5 metadata.yaml files created
+  - Schema matches spec section 3.1
+  - Expected error codes documented per spec section 2.1
+  phases: []
+  subtasks: []
+  estimated_effort: null
+  labels: []
+  notes: null
+- id: CORPUS-005
+  github_issue: null
+  item_type: task
+  title: Validate complete corpus and run acceptance tests
+  status: completed
+  priority: high
+  assigned_to: null
+  created: 1970-01-01T00:00:00Z
+  updated: 2025-11-29T11:28:33.941044492+00:00
+  spec: null
+  acceptance_criteria:
+  - All 19 examples parse-ready
+  - Metadata complete for all functions
+  - Error coverage matrix validated
+  - Validation script passes
+  phases: []
+  subtasks: []
+  estimated_effort: null
+  labels: []
+  notes: null
+- id: CORPUS-006
+  github_issue: null
+  item_type: task
+  title: Add original.c validation tests (TDD)
+  status: completed
+  priority: high
+  assigned_to: null
+  created: 1970-01-01T00:00:00Z
+  updated: 2025-11-29T11:33:18.344127868+00:00
+  spec: null
+  acceptance_criteria:
+  - Validation script checks for original.c in each example
+  - Tests fail initially (RED phase)
+  phases: []
+  subtasks: []
+  estimated_effort: null
+  labels: []
+  notes: null
+- id: CORPUS-007
+  github_issue: null
+  item_type: task
+  title: Download and extract coreutils sources
+  status: completed
+  priority: high
+  assigned_to: null
+  created: 1970-01-01T00:00:00Z
+  updated: 2025-11-29T11:34:03.956237732+00:00
+  spec: null
+  acceptance_criteria:
+  - GNU coreutils 9.4 downloaded
+  - All 19 original.c files extracted
+  - SHA256 verified
+  phases: []
+  subtasks: []
+  estimated_effort: null
+  labels: []
+  notes: null
+- id: CORPUS-008
+  github_issue: null
+  item_type: task
+  title: Final validation with original.c files
+  status: completed
+  priority: high
+  assigned_to: null
+  created: 1970-01-01T00:00:00Z
+  updated: 2025-11-29T11:34:24.573256602+00:00
+  spec: null
+  acceptance_criteria:
+  - All validation tests pass
+  - All 19 examples have original.c
+  - Spec section 7.1 acceptance criteria met
+  phases: []
+  subtasks: []
+  estimated_effort: null
+  labels: []
+  notes: null

@@ -1,0 +1,40 @@
+name: mv
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P1
+loc: 600
+
+functions:
+  - name: do_move
+    lines: 100-350
+    signature: "bool do_move(const char *src, const char *dst, const struct mv_options *x)"
+    complexity:
+      cyclomatic: 12
+      cognitive: 18
+    expected_errors:
+      - code: E0382
+        count: 2
+        pattern: "use after move of path strings (ironic for mv!)"
+      - code: E0506
+        count: 1
+        pattern: "cannot assign to path while borrowed"
+
+  - name: movefile
+    lines: 352-500
+    signature: "int movefile(const char *source, const char *dest, const struct cp_options *x)"
+    complexity:
+      cyclomatic: 10
+      cognitive: 14
+
+  - name: remove_file
+    lines: 502-600
+    signature: "bool remove_file(const char *file)"
+    complexity:
+      cyclomatic: 6
+      cognitive: 8
+
+annotations:
+  - citation: "[6] Long & Rinard 2016"
+    relevance: "Move semantics in C ironically produce move errors in Rust"

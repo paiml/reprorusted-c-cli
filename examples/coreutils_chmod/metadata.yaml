@@ -1,0 +1,40 @@
+name: chmod
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P2
+loc: 300
+
+functions:
+  - name: process_file
+    lines: 50-180
+    signature: "bool process_file(const char *file, const struct FTS_STRUCT *ent)"
+    complexity:
+      cyclomatic: 10
+      cognitive: 14
+    expected_errors:
+      - code: E0308
+        count: 2
+        pattern: "type mismatch in mode_t bitwise operations"
+      - code: E0133
+        count: 1
+        pattern: "unsafe required for chmod syscall"
+
+  - name: change_file_mode
+    lines: 182-250
+    signature: "int change_file_mode(const char *file, mode_t mode)"
+    complexity:
+      cyclomatic: 8
+      cognitive: 12
+
+  - name: make_mode_string
+    lines: 252-300
+    signature: "char *make_mode_string(mode_t mode)"
+    complexity:
+      cyclomatic: 6
+      cognitive: 8
+
+annotations:
+  - citation: "[6] Long & Rinard 2016"
+    relevance: "Bitwise operations with syscall interactions"

@@ -1,0 +1,33 @@
+name: wc
+source: GNU coreutils 9.4
+commit: v9.4
+license: GPL-3.0
+url: https://github.com/coreutils/coreutils
+tier: P0
+loc: 200
+
+functions:
+  - name: wc
+    lines: 50-180
+    signature: "void wc(int fd, const char *filename)"
+    complexity:
+      cyclomatic: 10
+      cognitive: 14
+    expected_errors:
+      - code: E0308
+        count: 2
+        pattern: "type mismatch in counter variables"
+      - code: E0382
+        count: 1
+        pattern: "use after move of buffer state"
+
+  - name: print_counts
+    lines: 182-200
+    signature: "void print_counts(uintmax_t lines, uintmax_t words, uintmax_t bytes)"
+    complexity:
+      cyclomatic: 3
+      cognitive: 4
+
+annotations:
+  - citation: "[1] Emre et al. 2021"
+    relevance: "Counting with state machine pattern"
